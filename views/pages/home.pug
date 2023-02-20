@@ -1,0 +1,37 @@
+extends ../base.pug
+
+
+block variables
+  - var template = 'home'
+
+  .home
+    .home__wrapper
+      body
+        script(src="./app.js")
+        div.title
+          h1 Filler Text For The Time Being
+          .contact__btn
+            button Text
+          .pay__btn
+          button Text2
+
+        div.body__text
+
+          h2 Why Choose EMS
+            p I am a paragraph
+          .body__info
+            h3 Locations Served
+            h3 Providers
+            h3 PA/APP
+        div.map__title
+          h2 Our Locations
+        div.map
+          script(src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap")
+
+        a.home__link(href=Link(home.data.collections))=home.data.button
+
+
+
+
+
+
