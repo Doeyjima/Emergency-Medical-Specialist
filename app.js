@@ -19,14 +19,14 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 const Prismic = require('@prismicio/client')
 const PrismicDOM = require('prismic-dom')
-
+//Initialize Prismic
 const initApi = req => {
   return Prismic.getGraphQLEndpoint(process.env.PRISMIC_ENDPOINT,{
     accessToken: process.env.PRISMIC_ACCESS_TOKENN,
     req
   })
 }
-
+//Generate URL's for Prismic
 const handleLinkResolver = doc => {
   if(doc.type === 'product') {
     return '/details/${doc.slug}'
@@ -43,7 +43,7 @@ const handleLinkResolver = doc => {
 
 app.use((req,res,next) => {
   res.locals.link = handleLinkResolver
-
+  //Top Priority Providers
   res.locals.Numbers = index => {
     return index == 0 ? 'One' : index == 1 ? 'Two': index == 2 ? 'Three' : index == 3 ? 'Four' : '';
   }
@@ -54,7 +54,7 @@ app.use((req,res,next) => {
 })
 
 
-
+//Views directory and Engine
 app.set('views',path.join(__dirname,'views'))
 app.set('view engine', 'pug')
 
@@ -69,12 +69,17 @@ app.get('/about', (req,res) => {
 })
 
 app.get('/details/:', (req,res) => {
-  res.render('pages/collections')
+  res.render('pages/locations')
 
 })
 
 app.get('/details/:', (req,res) => {
   res.render('pages/detail')
+
+})
+
+app.get('/details/:', (req,res) => {
+  res.render('pages/ourStaff')
 
 })
 
